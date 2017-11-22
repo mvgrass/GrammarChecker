@@ -34,20 +34,17 @@ public class Controller {
 
     @FXML
     void onCheckClicked(){
-        if(textField.getText().length()!=0) {
-            try {
-                Analyzer.Expression(textField.getText() + "\n", 0);
 
-                answer.setTextFill(Color.web("#0F0"));
-                answer.setText("Выражение верно");
-            } catch (GrammarException exc) {
-                answer.setTextFill(Color.web("#F00"));
-                answer.setText(exc.getMessage());
-
-                caretPosition = exc.getSymbolPosiion();
-                textField.requestFocus();
-                textField.selectPositionCaret(caretPosition);
-            }
+        try {
+            Analyzer.Expression(textField.getText() + "\n", 0);
+            answer.setTextFill(Color.web("#0F0"));
+            answer.setText("Выражение верно");
+        } catch (GrammarException exc) {
+            answer.setTextFill(Color.web("#F00"));
+            answer.setText(exc.getMessage());
+            caretPosition = exc.getSymbolPosiion();
+            textField.requestFocus();
+            textField.selectPositionCaret(caretPosition);
         }
 
     }
